@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newsletter</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.box {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 420px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+</style>
+
+</head>
+<body>
+
+<div class="box">
+    <h1>Newsletter abonnieren</h1>
+
+    <form action="mailto:robert.aurelio.werren@gmail.com?subject=Newsletter%20rwerren" method="post" enctype="text/plain">
+
+        <input type="text" name="Vorname" placeholder="Vorname" required>
+
+        <input type="text" name="Name" placeholder="Name" required>
+
+        <input type="email" name="Emailadresse" placeholder="E-Mail-Adresse" required>
+
+        <button type="submit">Absenden</button>
+
+    </form>
+</div>
+
+</body>
+</html>
