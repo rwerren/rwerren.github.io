@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RWERREN.COM</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+
+    background:
+    radial-gradient(circle at top,
+    #0b3d6e 0%,
+    #081624 40%,
+    #000000 100%);
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Menü */
+
+.menu-container{
+    position:fixed;
+    top:20px;
+    left:20px;
+    z-index:9999;
+}
+
+.menu-button{
+    width:80px;
+    height:auto;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.menu-button:hover{
+    transform:scale(1.08);
+}
+
+.dropdown-menu{
+    display:none;
+    position:absolute;
+    top:75px;
+    left:0;
+
+    min-width:280px;
+
+    background:rgba(5,15,35,0.95);
+
+    border:1px solid rgba(0,170,255,0.35);
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+    backdrop-filter:blur(10px);
+
+    box-shadow:
+    0 0 15px rgba(0,170,255,0.2);
+}
+
+.dropdown-menu.show{
+    display:block;
+}
+
+.dropdown-menu a{
+    display:block;
+
+    padding:18px 20px;
+
+    text-decoration:none;
+
+    color:#dfefff;
+
+    font-family:'Audiowide', sans-serif;
+
+    border-bottom:1px solid rgba(255,255,255,0.08);
+
+    transition:0.25s;
+}
+
+.dropdown-menu a:last-child{
+    border-bottom:none;
+}
+
+.dropdown-menu a:hover{
+    background:rgba(0,170,255,0.15);
+}
+
+/* Inhalt */
+
+.container{
+    width:100%;
+    max-width:900px;
+    text-align:center;
+    padding:30px 20px;
+}
+
+.logo{
+    width:min(420px,85vw);
+    height:auto;
+    margin-bottom:20px;
+}
+
+h1{
+    font-family:'Audiowide', sans-serif;
+    color:#000000;
+
+    font-size:clamp(2.2rem,8vw,5rem);
+
+    letter-spacing:4px;
+
+    text-shadow:
+    0 0 15px #00aaff,
+    0 0 35px #00aaff,
+    0 0 60px #00aaff;
+
+    margin-bottom:15px;
+}
+
+.subtitle{
+    font-family:'Audiowide', sans-serif;
+
+    color:#d6e9ff;
+
+    font-size:clamp(1rem,3vw,2rem);
+
+    letter-spacing:4px;
+
+    margin-bottom:60px;
+}
+
+.footer{
+    font-family:'Audiowide', sans-serif;
+
+    margin-top:60px;
+
+    color:#b7d8ff;
+
+    font-size:1.3rem;
+}
+
+@media (max-width:600px){
+
+    .menu-button{
+        width:50px;
+    }
+
+    .dropdown-menu{
+        min-width:230px;
+    }
+
+    .logo{
+        width:90vw;
+    }
+
+    .subtitle{
+        margin-bottom:40px;
+    }
+
+    .footer{
+        font-size:1rem;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Menü -->
+
+<div class="menu-container">
+
+    <img
+        src="images/menu.png"
+        alt="Menü"
+        class="menu-button"
+        onclick="toggleMenu()"
+    >
+
+    <div id="dropdownMenu" class="dropdown-menu">
+
+        <a href="/teigtaschen/">
+            TEIGTASCHEN
+        </a>
+
+        <a href="/zmittag/">
+            ZMITTAG IM AARGAU
+        </a>
+
+        <a href="/newsletter/">
+            NEWSLETTER
+        </a>
+
+    </div>
+
+</div>
+
+<!-- Inhalt -->
+
+<div class="container">
+
+    <img src="images/Logo.png"
+         alt="RWERREN.COM"
+         class="logo">
+
+    <h1>RWERREN.COM</h1>
+
+    <div class="subtitle">
+        ROBERT WERREN PRESENTS
+    </div>
+
+    <div class="footer">
+        © Robert Werren
+    </div>
+
+</div>
+
+<script>
+
+function toggleMenu() {
+    document
+        .getElementById('dropdownMenu')
+        .classList
+        .toggle('show');
+}
+
+document.addEventListener('click', function(event){
+
+    const menu = document.getElementById('dropdownMenu');
+    const button = document.querySelector('.menu-button');
+
+    if(
+        !menu.contains(event.target) &&
+        event.target !== button
+    ){
+        menu.classList.remove('show');
+    }
+
+});
+
+</script>
+
+</body>
+</html>
