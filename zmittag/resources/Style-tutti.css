@@ -1,0 +1,175 @@
+/* ==========================================
+   RW.COM STYLE SHEET
+   ========================================== */
+
+:root{
+    --rw-dark: #08111f;
+    --rw-blue: #0d3f78;
+    --rw-light: #1da1ff;
+    --rw-cyan: #53d8ff;
+    --rw-text: #eaf6ff;
+}
+
+/* Alle OpenLayers Controls */
+.ol-control {
+    background: rgba(8,17,31,.55) !important;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(83,216,255,.35);
+    border-radius: 12px !important;
+    padding: 3px !important;
+
+    box-shadow:
+        0 0 12px rgba(29,161,255,.35),
+        inset 0 1px 0 rgba(255,255,255,.15);
+}
+
+/* Buttons */
+.ol-control button {
+    width: 34px !important;
+    height: 34px !important;
+
+    color: var(--rw-text) !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #164d89 0%,
+            #0c2f56 55%,
+            #071423 100%
+        ) !important;
+
+    border: 1px solid rgba(83,216,255,.4) !important;
+    border-radius: 10px !important;
+
+    box-shadow:
+        0 0 10px rgba(29,161,255,.25),
+        inset 0 1px 0 rgba(255,255,255,.15);
+
+    transition: all .25s ease;
+}
+
+/* Hover */
+.ol-control button:hover {
+    background:
+        linear-gradient(
+            180deg,
+            #1a67b8,
+            #0f467f,
+            #0b1c31
+        ) !important;
+
+    box-shadow:
+        0 0 20px rgba(83,216,255,.7),
+        0 0 8px rgba(29,161,255,.7);
+
+    transform: translateY(-1px);
+}
+
+/* Zoom */
+.ol-zoom button {
+    font-size: 22px !important;
+    font-weight: bold !important;
+}
+
+/* Suchfeld */
+.search-layer-input-search {
+    background: rgba(8,17,31,.85) !important;
+    color: #ffffff !important;
+
+    border: 1px solid rgba(83,216,255,.4) !important;
+    border-radius: 10px !important;
+}
+
+.search-layer-input-search::placeholder {
+    color: #8fdfff !important;
+}
+
+/* Layer-Switcher */
+.layer-switcher {
+    background: rgba(8,17,31,.85) !important;
+    color: white !important;
+
+    border-radius: 12px !important;
+
+    box-shadow:
+        0 0 15px rgba(29,161,255,.35);
+}
+
+.layer-switcher label {
+    color: #08111f !important;
+}
+
+.layer-switcher li {
+    color: #08111f !important;
+}
+
+.layer-switcher span {
+    color: #08111f !important;
+}
+
+.layer-switcher input + label {
+    color: #08111f !important;
+}
+
+.layer-switcher button {
+    background-image: none !important;
+}
+
+.layer-switcher button::before {
+    content: "☰";
+    color: #eaf6ff;
+    font-size: 22px;
+    font-weight: bold;
+}
+.layer-switcher.shown button::before {
+    content: "";
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Legende */
+.ol-attribution,
+.ol-attribution ul,
+.ol-attribution li {
+    color: #dff4ff !important;
+}
+
+.ol-attribution {
+    background: rgba(8,17,31,.85) !important;
+
+    border: 10px solid rgba(83,216,255,.3);
+
+    border-radius: 12px !important;
+
+    box-shadow:
+        0 0 12px rgba(29,161,255,.35);
+}
+
+/* Links */
+.ol-attribution a {
+    color: white !important;
+}
+
+.bottom-attribution a {
+    color: white !important;
+}
+
+/* Popup von Layer */
+.ol-popup {
+    background: #0d3f78 ;
+
+    color: white ;
+
+    border: 1px solid rgba(83,216,255,.5);
+
+    border-radius: 12px;
+    
+    box-shadow:
+        0 0 25px rgba(29,161,255,.45)
+    
+}
+
+.ol-popup * {
+    color: white !important;
+}
