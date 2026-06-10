@@ -4,8 +4,8 @@
 
 .map-legend {
     position: absolute;
-    bottom: 15px;
-    left: 15px;
+    top: 15px;
+    right: 15px;
 
     background: rgba(8, 22, 36, 0.95);
 
