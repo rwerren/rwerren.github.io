@@ -1,0 +1,14 @@
+#north-arrow {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+#north-arrow img {
+    width: 100%;
+    height: 100%;
+}
