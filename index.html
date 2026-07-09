@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>RWERREN.COM</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="images/Logo.png">
+<link rel="icon" href="images/Logo.png">
+<meta name="theme-color" content="#081a30">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
 
 <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
 
@@ -16,165 +23,366 @@
     box-sizing:border-box;
 }
 
+html,body{
+    height:100%;
+}
+
 body{
     min-height:100vh;
+    min-height:100dvh;
 
     background:
-    radial-gradient(circle at top,
-    #0b3d6e 0%,
-    #081624 40%,
+    radial-gradient(circle at 50% 0%,
+    #0d4a8a 0%,
+    #081a30 45%,
     #000000 100%);
+
+    background-attachment:fixed;
 
     font-family:Arial, Helvetica, sans-serif;
 
     display:flex;
     justify-content:center;
     align-items:center;
+
+    overflow-x:hidden;
+    position:relative;
 }
 
-/* Menü */
+/* Background grid */
 
-.menu-container{
+body::before{
+    content:"";
     position:fixed;
-    top:20px;
-    left:20px;
-    z-index:9999;
+    inset:0;
+
+    background-image:
+    linear-gradient(rgba(0,170,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,170,255,0.08) 1px, transparent 1px);
+
+    background-size:48px 48px;
+
+    mask-image:radial-gradient(circle at 50% 20%, #000 0%, transparent 75%);
+    -webkit-mask-image:radial-gradient(circle at 50% 20%, #000 0%, transparent 75%);
+
+    pointer-events:none;
+    z-index:0;
 }
 
-.menu-button{
-    width:80px;
-    height:auto;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.menu-button:hover{
-    transform:scale(1.08);
-}
-
-.dropdown-menu{
-    display:none;
-    position:absolute;
-    top:75px;
-    left:0;
-
-    min-width:280px;
-
-    background:rgba(5,15,35,0.95);
-
-    border:1px solid rgba(0,170,255,0.35);
-
-    border-radius:14px;
-
-    overflow:hidden;
-
-    backdrop-filter:blur(10px);
-
-    box-shadow:
-    0 0 15px rgba(0,170,255,0.2);
-}
-
-.dropdown-menu.show{
-    display:block;
-}
-
-.dropdown-menu a{
-    display:block;
-
-    padding:18px 20px;
-
-    text-decoration:none;
-
-    color:#dfefff;
-
-    font-family:'Audiowide', sans-serif;
-
-    border-bottom:1px solid rgba(255,255,255,0.08);
-
-    transition:0.25s;
-}
-
-.dropdown-menu a:last-child{
-    border-bottom:none;
-}
-
-.dropdown-menu a:hover{
-    background:rgba(0,170,255,0.15);
-}
-
-/* Inhalt */
+/* Content */
 
 .container{
+    position:relative;
+    z-index:1;
+
     width:100%;
-    max-width:900px;
+    max-width:520px;
     text-align:center;
-    padding:30px 20px;
+    padding:40px 20px;
 }
 
 .logo{
-    width:min(420px,85vw);
+    width:min(220px,55vw);
     height:auto;
-    margin-bottom:20px;
+    margin-bottom:10px;
+
+    filter:drop-shadow(0 0 18px rgba(0,170,255,0.55));
+
+    animation:pulse-logo 4s ease-in-out infinite;
+}
+
+@keyframes pulse-logo{
+    0%,100%{ filter:drop-shadow(0 0 18px rgba(0,170,255,0.55)); }
+    50%{ filter:drop-shadow(0 0 32px rgba(0,170,255,0.85)); }
 }
 
 h1{
     font-family:'Audiowide', sans-serif;
     color:#000000;
 
-    font-size:clamp(2.2rem,8vw,5rem);
+    font-size:clamp(1.8rem,7vw,3.2rem);
 
-    letter-spacing:4px;
+    letter-spacing:3px;
 
     text-shadow:
     0 0 15px #00aaff,
     0 0 35px #00aaff,
     0 0 60px #00aaff;
 
-    margin-bottom:15px;
+    margin-bottom:10px;
 }
 
 .subtitle{
     font-family:'Audiowide', sans-serif;
 
-    color:#d6e9ff;
+    color:#8fc1ef;
 
-    font-size:clamp(1rem,3vw,2rem);
+    font-size:clamp(0.75rem,2.6vw,1.1rem);
 
-    letter-spacing:4px;
+    letter-spacing:3px;
 
-    margin-bottom:60px;
+    margin-bottom:36px;
+}
+
+/* Cards */
+
+.card-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+
+    margin-bottom:28px;
+    text-align:left;
+}
+
+/* Hero card: Pints */
+
+.hero-card{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+
+    padding:34px 24px;
+    margin-bottom:20px;
+
+    background:linear-gradient(160deg, rgba(0,170,255,0.22), rgba(0,60,110,0.10));
+
+    border:1px solid rgba(0,170,255,0.55);
+    border-radius:22px;
+
+    text-decoration:none;
+
+    box-shadow:0 0 30px rgba(0,170,255,0.25), inset 0 0 30px rgba(0,170,255,0.06);
+
+    transition:0.25s;
+
+    position:relative;
+    overflow:hidden;
+}
+
+.hero-card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at 50% 0%, rgba(0,200,255,0.25), transparent 60%);
+    pointer-events:none;
+}
+
+.hero-card:hover{
+    border-color:rgba(0,200,255,0.9);
+    box-shadow:0 0 42px rgba(0,200,255,0.4), inset 0 0 30px rgba(0,170,255,0.1);
+    transform:translateY(-2px);
+}
+
+.hero-icon{
+    font-size:2.6rem;
+    line-height:1;
+}
+
+.hero-title{
+    font-family:'Audiowide', sans-serif;
+    color:#eaf6ff;
+    font-size:clamp(1.4rem,6vw,1.9rem);
+    letter-spacing:3px;
+
+    text-shadow:0 0 18px rgba(0,200,255,0.6);
+}
+
+.hero-sub{
+    font-family:Arial, Helvetica, sans-serif;
+    color:#a9d7fb;
+    font-size:0.85rem;
+    letter-spacing:0.5px;
+    text-align:center;
+}
+
+.hero-cta{
+    margin-top:6px;
+
+    font-family:'Audiowide', sans-serif;
+    font-size:0.75rem;
+    letter-spacing:2px;
+    color:#00121f;
+
+    background:#4fd0ff;
+    padding:10px 26px;
+    border-radius:999px;
+
+    box-shadow:0 0 18px rgba(0,200,255,0.5);
+}
+
+.secondary-label{
+    font-family:'Audiowide', sans-serif;
+    color:#4a7ba8;
+    font-size:0.7rem;
+    letter-spacing:2px;
+    margin:4px 2px 10px;
+}
+
+.card{
+    position:relative;
+
+    background:linear-gradient(135deg, rgba(0,170,255,0.10), rgba(255,255,255,0.02));
+
+    border:1px solid rgba(0,170,255,0.35);
+    border-radius:16px;
+
+    backdrop-filter:blur(10px);
+
+    box-shadow:0 4px 20px rgba(0,0,0,0.35);
+
+    overflow:hidden;
+
+    transition:0.25s;
+}
+
+.card:hover{
+    border-color:rgba(0,170,255,0.7);
+    box-shadow:0 4px 28px rgba(0,170,255,0.25);
+}
+
+.card-main{
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    width:100%;
+
+    padding:18px 20px;
+
+    background:none;
+    border:none;
+
+    cursor:pointer;
+    text-decoration:none;
+
+    font-family:'Audiowide', sans-serif;
+    color:#eaf6ff;
+    font-size:1rem;
+    letter-spacing:1.5px;
+
+    text-align:left;
+}
+
+.card-icon{
+    font-size:1.5rem;
+    line-height:1;
+    flex-shrink:0;
+}
+
+.card-text{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+}
+
+.card-text small{
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:normal;
+    letter-spacing:0.3px;
+    color:#8fc1ef;
+    font-size:0.75rem;
+}
+
+.card-arrow{
+    flex-shrink:0;
+    color:#4fa9e8;
+    transition:transform 0.25s;
+}
+
+.card.open .card-arrow{
+    transform:rotate(90deg);
+}
+
+/* Sub-links (Maps) */
+
+.sub-links{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.3s ease;
+
+    border-top:1px solid rgba(0,170,255,0.15);
+}
+
+.card.open .sub-links{
+    max-height:400px;
+}
+
+.sub-links a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:14px 20px 14px 54px;
+
+    text-decoration:none;
+
+    color:#dfefff;
+
+    font-family:'Audiowide', sans-serif;
+    font-size:0.85rem;
+    letter-spacing:1px;
+
+    border-top:1px solid rgba(255,255,255,0.06);
+
+    transition:0.2s;
+}
+
+.sub-links a:first-child{
+    border-top:none;
+}
+
+.sub-links a:hover{
+    background:rgba(0,170,255,0.12);
+    padding-left:58px;
+}
+
+.newsletter-card .card-main{
+    justify-content:center;
+    text-align:center;
+}
+
+/* Compact secondary cards */
+
+.card.compact .card-main{
+    padding:13px 16px;
+}
+
+.card.compact .card-icon{
+    font-size:1.15rem;
+}
+
+.card.compact .card-text{
+    font-size:0.85rem;
+}
+
+.card.compact .card-text small{
+    font-size:0.68rem;
 }
 
 .footer{
     font-family:'Audiowide', sans-serif;
 
-    margin-top:60px;
+    margin-top:10px;
 
-    color:#b7d8ff;
+    color:#5c8ab8;
 
-    font-size:1.3rem;
+    font-size:0.85rem;
+
+    letter-spacing:1px;
 }
 
-@media (max-width:600px){
+@media (max-width:400px){
 
-    .menu-button{
-        width:50px;
+    .card-main{
+        padding:16px;
+        font-size:0.9rem;
     }
 
-    .dropdown-menu{
-        min-width:230px;
-    }
-
-    .logo{
-        width:90vw;
-    }
-
-    .subtitle{
-        margin-bottom:40px;
-    }
-
-    .footer{
-        font-size:1rem;
+    .sub-links a{
+        padding-left:48px;
     }
 }
 
@@ -183,40 +391,7 @@ h1{
 
 <body>
 
-<!-- Menü -->
-
-<div class="menu-container">
-
-    <img
-        src="images/menu.png"
-        alt="Menü"
-        class="menu-button"
-        onclick="toggleMenu()"
-    >
-
-    <div id="dropdownMenu" class="dropdown-menu">
-
-        <a href="/brunnen/">
-            BRUNNEN
-        </a>    
-        
-        <a href="/zmittag/">
-            ZMITTAG IM AARGAU
-        </a>
-
-        <a href="/teigtaschen/">
-            TEIGTASCHEN
-        </a>
-
-        <a href="/newsletter/">
-            NEWSLETTER
-        </a>
-
-    </div>
-
-</div>
-
-<!-- Inhalt -->
+<!-- Content -->
 
 <div class="container">
 
@@ -230,6 +405,61 @@ h1{
         ROBERT WERREN PRESENTS
     </div>
 
+    <a class="hero-card" href="https://pints.rwerren.com" target="_blank" rel="noopener">
+        <span class="hero-icon">🍺</span>
+        <span class="hero-title">PINTS</span>
+        <span class="hero-sub">The beer rating game &mdash; collect, rate &amp; discover</span>
+        <span class="hero-cta">PLAY NOW ›</span>
+    </a>
+
+    <div class="secondary-label">MORE FROM RWERREN</div>
+
+    <div class="card-list">
+
+        <div class="card compact" id="mapsCard">
+
+            <button class="card-main" onclick="toggleMapsCard()" style="cursor:pointer;">
+                <span class="card-icon">🗺️</span>
+                <span class="card-text">
+                    MAPS
+                    <small>Interactive Maps</small>
+                </span>
+                <span class="card-arrow">›</span>
+            </button>
+
+            <div class="sub-links">
+
+                <a href="/brunnen/">
+                    💧 FOUNTAINS
+                </a>
+
+                <a href="/zmittag/">
+                    🍽️ LUNCH IN AARGAU
+                </a>
+
+                <a href="/teigtaschen/">
+                    🥟 DUMPLINGS
+                </a>
+
+                <a href="https://pints.rwerren.com/map/" target="_blank" rel="noopener">
+                    🍺 PINTS
+                </a>
+
+            </div>
+
+        </div>
+
+        <a class="card compact newsletter-card" href="/newsletter/">
+            <div class="card-main">
+                <span class="card-icon">📧</span>
+                <span class="card-text" style="align-items:center;">
+                    NEWSLETTER
+                </span>
+            </div>
+        </a>
+
+    </div>
+
     <div class="footer">
         © Robert Werren
     </div>
@@ -238,26 +468,9 @@ h1{
 
 <script>
 
-function toggleMenu() {
-    document
-        .getElementById('dropdownMenu')
-        .classList
-        .toggle('show');
+function toggleMapsCard() {
+    document.getElementById('mapsCard').classList.toggle('open');
 }
-
-document.addEventListener('click', function(event){
-
-    const menu = document.getElementById('dropdownMenu');
-    const button = document.querySelector('.menu-button');
-
-    if(
-        !menu.contains(event.target) &&
-        event.target !== button
-    ){
-        menu.classList.remove('show');
-    }
-
-});
 
 </script>
 
