@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RWERREN Newsletter</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="images/Logo.png">
+<link rel="icon" href="images/Logo.png">
+<meta name="theme-color" content="#03172f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Audiowide',sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+    radial-gradient(circle at center,#0d4f8b 0%,#03172f 45%,#000814 100%);
+    color:#fff;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:650px;
+    text-align:center;
+    padding:40px;
+    border:1px solid rgba(0,170,255,.25);
+    border-radius:24px;
+    background:rgba(0,10,25,.75);
+    backdrop-filter:blur(8px);
+    box-shadow:0 0 35px rgba(0,170,255,.35);
+}
+
+.logo{
+    width:280px;
+    max-width:100%;
+    margin-bottom:20px;
+}
+
+h1{
+    color:#8ed8ff;
+    text-shadow:0 0 18px #00aaff;
+    margin-bottom:25px;
+}
+
+.info{
+    color:#cdeeff;
+    margin-bottom:25px;
+    line-height:1.6;
+}
+
+input{
+    width:100%;
+    padding:16px;
+    margin:10px 0;
+    border-radius:10px;
+    border:1px solid #0ea5e9;
+    background:#021120;
+    color:white;
+    font-family:'Audiowide',sans-serif;
+}
+
+input::placeholder{
+    color:#9ecde7;
+}
+
+button{
+    width:100%;
+    padding:16px;
+    margin-top:15px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-family:'Audiowide',sans-serif;
+    font-size:16px;
+    color:white;
+    background:linear-gradient(90deg,#0057b8,#00b7ff);
+    box-shadow:0 0 20px rgba(0,183,255,.6);
+    transition:.2s;
+}
+
+button:hover{
+    transform:scale(1.02);
+}
+
+#success{
+    display:none;
+    margin-top:25px;
+}
+
+#success h2{
+    color:#8cffb5;
+    text-shadow:0 0 15px #00ff88;
+    margin-bottom:10px;
+}
+
+#success p{
+    color:white;
+    font-size:18px;
+}
+
+.back-button{
+    display:inline-block;
+    margin-top:25px;
+    color:#8ed8ff;
+    text-decoration:none;
+}
+
+.back-button:hover{
+    text-decoration:underline;
+}
+
+@media(max-width:600px){
+
+    .container{
+        padding:25px;
+    }
+
+    h1{
+        font-size:1.5rem;
+    }
+
+    input,
+    button{
+        font-size:14px;
+    }
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <img src="images/Logo.png" alt="RWERREN Logo" class="logo">
+
+    <h1>NEWSLETTER ABONNIEREN</h1>
+
+    <p class="info">
+       VERSENDEN SIE DAS AUTOMATISCH GENERIERTE EMAIL
+    </p>
+
+    <form id="newsletterForm">
+
+        <input
+            type="text"
+            name="Vorname"
+            placeholder="Vorname"
+            required>
+
+        <input
+            type="text"
+            name="Name"
+            placeholder="Name"
+            required>
+
+        <input
+            type="email"
+            name="E-Mail"
+            placeholder="E-Mail-Adresse"
+            required>
+
+        <button type="button" onclick="sendNewsletter()">
+            EMAIL GENERIEREN
+        </button>
+
+    </form>
+
+    <div id="success">
+
+        <h2>NEWSLETTER ABONNIERT</h2>
+
+        <p>BESTEN DANK</p>
+
+    </div>
+
+    <a href="/" class="back-button">
+        ← Zurück zu RWERREN.COM
+    </a>
+
+</div>
+
+<script>
+
+function sendNewsletter(){
+
+    const vorname =
+        document.querySelector('input[name="Vorname"]').value;
+
+    const name =
+        document.querySelector('input[name="Name"]').value;
+
+    const email =
+        document.querySelector('input[name="E-Mail"]').value;
+
+    if(!vorname || !name || !email){
+        alert("Bitte alle Felder ausfüllen.");
+        return;
+    }
+
+    document.getElementById("newsletterForm").style.display = "none";
+    document.getElementById("success").style.display = "block";
+
+    const body =
+        "Vorname: " + vorname + "%0D%0A" +
+        "Name: " + name + "%0D%0A" +
+        "E-Mail: " + email;
+
+    setTimeout(function(){
+
+        window.location.href =
+            "mailto:robert.aurelio.werren@gmail.com" +
+            "?subject=Newsletter%20rwerren" +
+            "&body=" + body;
+
+    }, 1000);
+
+}
+
+</script>
+
+</body>
+</html>

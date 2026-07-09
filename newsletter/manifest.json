@@ -1,0 +1,16 @@
+{
+  "name": "RWERREN Newsletter",
+  "short_name": "Newsletter",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#03172f",
+  "theme_color": "#03172f",
+  "icons": [
+    {
+      "src": "images/Logo.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
