@@ -23,10 +23,6 @@
     box-sizing:border-box;
 }
 
-html,body{
-    height:100%;
-}
-
 body{
     min-height:100vh;
     min-height:100dvh;
@@ -42,8 +38,6 @@ body{
     font-family:Arial, Helvetica, sans-serif;
 
     display:flex;
-    justify-content:center;
-    align-items:center;
 
     overflow-x:hidden;
     position:relative;
@@ -79,6 +73,9 @@ body::before{
     max-width:520px;
     text-align:center;
     padding:40px 20px;
+
+    /* centered when it fits, scrollable from the top when it doesn't */
+    margin:auto;
 }
 
 .logo{
