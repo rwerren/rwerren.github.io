@@ -124,17 +124,6 @@ h1{
     margin-bottom:36px;
 }
 
-/* Cards */
-
-.card-list{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-
-    margin-bottom:28px;
-    text-align:left;
-}
-
 /* Hero card: Pints */
 
 .hero-card{
@@ -212,154 +201,185 @@ h1{
     box-shadow:0 0 18px rgba(0,200,255,0.5);
 }
 
-.secondary-label{
-    font-family:'Audiowide', sans-serif;
-    color:#4a7ba8;
-    font-size:0.7rem;
-    letter-spacing:2px;
-    margin:4px 2px 10px;
-}
+/* Tutorials: collapsible card */
 
-.card{
-    position:relative;
+.tut-card{
+    margin-bottom:28px;
 
     background:linear-gradient(135deg, rgba(0,170,255,0.10), rgba(255,255,255,0.02));
 
     border:1px solid rgba(0,170,255,0.35);
     border-radius:16px;
 
-    backdrop-filter:blur(10px);
-
     box-shadow:0 4px 20px rgba(0,0,0,0.35);
 
     overflow:hidden;
-
-    transition:0.25s;
+    transition:border-color 0.25s, box-shadow 0.25s;
 }
 
-.card:hover{
+.tut-card:hover,
+.tut-card.open{
     border-color:rgba(0,170,255,0.7);
     box-shadow:0 4px 28px rgba(0,170,255,0.25);
 }
 
-.card-main{
+.tut-toggle{
     display:flex;
     align-items:center;
     gap:14px;
 
     width:100%;
-
-    padding:18px 20px;
+    padding:14px 18px;
 
     background:none;
     border:none;
-
     cursor:pointer;
-    text-decoration:none;
 
     font-family:'Audiowide', sans-serif;
     color:#eaf6ff;
-    font-size:1rem;
+    font-size:0.95rem;
     letter-spacing:1.5px;
-
     text-align:left;
 }
 
-.card-icon{
-    font-size:1.5rem;
+.tut-icon{
+    font-size:1.3rem;
     line-height:1;
-    flex-shrink:0;
 }
 
-.card-text{
+.tut-text{
     flex:1;
     display:flex;
     flex-direction:column;
     gap:2px;
 }
 
-.card-text small{
+.tut-text small{
     font-family:Arial, Helvetica, sans-serif;
-    font-weight:normal;
     letter-spacing:0.3px;
     color:#8fc1ef;
-    font-size:0.75rem;
+    font-size:0.72rem;
 }
 
-.card-arrow{
-    flex-shrink:0;
+.tut-arrow{
     color:#4fa9e8;
     transition:transform 0.25s;
 }
 
-.card.open .card-arrow{
+.tut-card.open .tut-arrow{
     transform:rotate(90deg);
 }
 
-/* Sub-links (Maps) */
-
-.sub-links{
+.tut-body{
     max-height:0;
     overflow:hidden;
-    transition:max-height 0.3s ease;
+    transition:max-height 0.35s ease;
+}
 
+.tut-card.open .tut-body{
     border-top:1px solid rgba(0,170,255,0.15);
 }
 
-.card.open .sub-links{
-    max-height:400px;
+/* Carousel */
+
+.carousel{
+    position:relative;
+    padding:16px 0 14px;
 }
 
-.sub-links a{
+.carousel-track{
     display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
+    scrollbar-width:none;
+}
+
+.carousel-track::-webkit-scrollbar{
+    display:none;
+}
+
+.slide{
+    flex:0 0 100%;
+    scroll-snap-align:center;
+
+    display:flex;
+    flex-direction:column;
     align-items:center;
-    gap:12px;
+    gap:10px;
+}
 
-    padding:14px 20px 14px 54px;
+.slide video{
+    height:min(60vh, 480px);
+    aspect-ratio:780 / 1688;
+    max-width:calc(100% - 100px);
 
-    text-decoration:none;
+    background:#000;
+    border-radius:14px;
+    border:1px solid rgba(0,170,255,0.35);
+    box-shadow:0 0 22px rgba(0,170,255,0.25);
+}
 
-    color:#dfefff;
-
+.slide-title{
     font-family:'Audiowide', sans-serif;
+    color:#eaf6ff;
     font-size:0.85rem;
-    letter-spacing:1px;
+    letter-spacing:1.5px;
+}
 
-    border-top:1px solid rgba(255,255,255,0.06);
+.carousel-btn{
+    position:absolute;
+    top:calc(16px + min(60vh, 480px) / 2);
+    transform:translateY(-50%);
+
+    width:38px;
+    height:38px;
+    border-radius:50%;
+
+    background:rgba(0,30,60,0.75);
+    border:1px solid rgba(0,170,255,0.5);
+    color:#4fd0ff;
+    font-size:1.3rem;
+    line-height:1;
+    cursor:pointer;
 
     transition:0.2s;
 }
 
-.sub-links a:first-child{
-    border-top:none;
+.carousel-btn:hover{
+    background:rgba(0,170,255,0.25);
 }
 
-.sub-links a:hover{
-    background:rgba(0,170,255,0.12);
-    padding-left:58px;
+.carousel-btn:disabled{
+    opacity:0.25;
+    cursor:default;
 }
 
-.newsletter-card .card-main{
+.carousel-btn.prev{ left:10px; }
+.carousel-btn.next{ right:10px; }
+
+.carousel-dots{
+    display:flex;
     justify-content:center;
-    text-align:center;
+    gap:8px;
+    margin-top:12px;
 }
 
-/* Compact secondary cards */
-
-.card.compact .card-main{
-    padding:13px 16px;
+.carousel-dots button{
+    width:8px;
+    height:8px;
+    padding:0;
+    border-radius:50%;
+    border:none;
+    background:rgba(0,170,255,0.3);
+    cursor:pointer;
+    transition:0.2s;
 }
 
-.card.compact .card-icon{
-    font-size:1.15rem;
-}
-
-.card.compact .card-text{
-    font-size:0.85rem;
-}
-
-.card.compact .card-text small{
-    font-size:0.68rem;
+.carousel-dots button.active{
+    background:#4fd0ff;
+    box-shadow:0 0 8px rgba(0,200,255,0.8);
+    transform:scale(1.25);
 }
 
 .footer{
@@ -372,18 +392,6 @@ h1{
     font-size:0.85rem;
 
     letter-spacing:1px;
-}
-
-@media (max-width:400px){
-
-    .card-main{
-        padding:16px;
-        font-size:0.9rem;
-    }
-
-    .sub-links a{
-        padding-left:48px;
-    }
 }
 
 </style>
@@ -412,51 +420,46 @@ h1{
         <span class="hero-cta">PLAY NOW ›</span>
     </a>
 
-    <div class="secondary-label">MORE FROM RWERREN</div>
+    <div class="tut-card" id="tutCard">
 
-    <div class="card-list">
+        <button class="tut-toggle" id="tutToggle" aria-expanded="false" aria-controls="tutBody">
+            <span class="tut-icon">🎬</span>
+            <span class="tut-text">
+                TUTORIALS
+                <small>Learn how to play Pints</small>
+            </span>
+            <span class="tut-arrow">›</span>
+        </button>
 
-        <div class="card compact" id="mapsCard">
+        <div class="tut-body" id="tutBody">
+            <div class="carousel">
 
-            <button class="card-main" onclick="toggleMapsCard()" style="cursor:pointer;">
-                <span class="card-icon">🗺️</span>
-                <span class="card-text">
-                    MAPS
-                    <small>Interactive Maps</small>
-                </span>
-                <span class="card-arrow">›</span>
-            </button>
+                <div class="carousel-track" id="tutTrack">
 
-            <div class="sub-links">
+                    <div class="slide">
+                        <video src="videos/Tutorial-Add-Pub.mp4#t=0.1" controls playsinline preload="metadata"></video>
+                        <div class="slide-title">📍 ADD A PUB</div>
+                    </div>
 
-                <a href="/brunnen/">
-                    💧 FOUNTAINS
-                </a>
+                    <div class="slide">
+                        <video src="videos/Tutorial-Handshake.mp4#t=0.1" controls playsinline preload="metadata"></video>
+                        <div class="slide-title">🤝 HANDSHAKE &amp; CHEERS</div>
+                    </div>
 
-                <a href="/zmittag/">
-                    🍽️ LUNCH IN AARGAU
-                </a>
+                    <div class="slide">
+                        <video src="videos/Tutorial-Beer-Photo.mp4#t=0.1" controls playsinline preload="metadata"></video>
+                        <div class="slide-title">🛢️ BEER PHOTO XP</div>
+                    </div>
 
-                <a href="/teigtaschen/">
-                    🥟 DUMPLINGS
-                </a>
+                </div>
 
-                <a href="https://pints.rwerren.com/map/" target="_blank" rel="noopener">
-                    🍺 PINTS
-                </a>
+                <button class="carousel-btn prev" id="tutPrev" aria-label="Previous video">‹</button>
+                <button class="carousel-btn next" id="tutNext" aria-label="Next video">›</button>
+
+                <div class="carousel-dots" id="tutDots"></div>
 
             </div>
-
         </div>
-
-        <a class="card compact newsletter-card" href="/newsletter/">
-            <div class="card-main">
-                <span class="card-icon">📧</span>
-                <span class="card-text" style="align-items:center;">
-                    NEWSLETTER
-                </span>
-            </div>
-        </a>
 
     </div>
 
@@ -467,11 +470,75 @@ h1{
 </div>
 
 <script>
+(function () {
+    const card   = document.getElementById('tutCard');
+    const toggle = document.getElementById('tutToggle');
+    const body   = document.getElementById('tutBody');
+    const track  = document.getElementById('tutTrack');
+    const prev   = document.getElementById('tutPrev');
+    const next   = document.getElementById('tutNext');
+    const dotBox = document.getElementById('tutDots');
+    const slides = Array.from(track.children);
+    const videos = slides.map(s => s.querySelector('video'));
+    let current = 0;
 
-function toggleMapsCard() {
-    document.getElementById('mapsCard').classList.toggle('open');
-}
+    // Expand / collapse
+    toggle.addEventListener('click', () => {
+        const open = card.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open);
+        if (open) {
+            body.style.maxHeight = body.scrollHeight + 'px';
+        } else {
+            body.style.maxHeight = body.scrollHeight + 'px';   // from 'none' back to a number
+            body.offsetHeight;                                 // force reflow
+            body.style.maxHeight = '0';
+            videos.forEach(v => v.pause());
+        }
+    });
 
+    // After opening: release the limit so window resizes don't clip the carousel
+    body.addEventListener('transitionend', () => {
+        if (card.classList.contains('open')) body.style.maxHeight = 'none';
+    });
+
+    // Dots
+    const dots = slides.map((_, i) => {
+        const d = document.createElement('button');
+        d.setAttribute('aria-label', 'Video ' + (i + 1));
+        d.addEventListener('click', () => goTo(i));
+        dotBox.appendChild(d);
+        return d;
+    });
+
+    function goTo(i) {
+        i = Math.max(0, Math.min(slides.length - 1, i));
+        track.scrollTo({ left: i * track.clientWidth });
+    }
+
+    function update() {
+        const w = track.clientWidth;
+        const i = w > 0 ? Math.round(track.scrollLeft / w) : current;
+        if (i !== current) {
+            videos[current].pause();
+            current = i;
+        }
+        dots.forEach((d, k) => d.classList.toggle('active', k === current));
+        prev.disabled = current === 0;
+        next.disabled = current === slides.length - 1;
+    }
+
+    prev.addEventListener('click', () => goTo(current - 1));
+    next.addEventListener('click', () => goTo(current + 1));
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', () => goTo(current));
+
+    // Only one video plays at a time
+    videos.forEach(v => v.addEventListener('play', () => {
+        videos.forEach(o => { if (o !== v) o.pause(); });
+    }));
+
+    update();
+})();
 </script>
 
 </body>
